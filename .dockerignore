@@ -1,0 +1,44 @@
+# VCS / editor
+.git
+.gitignore
+.vscode
+.idea
+
+# Env / secrets
+.env
+.env.*
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+
+# Python artifacts
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.coverage*
+
+# Local virtualenvs
+.venv/
+venv/
+env/
+backend/.venv/
+
+# Node artifacts
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Build/temp artifacts
+dist/
+build/
+tmp/
+.tmp/
+
+# Runtime artifacts
+backend/data/rag_storage/*
+backend/data/rag_storage/.gitkeep
