@@ -13,7 +13,7 @@ docker compose logs --tail=120 api
 Health checks:
 
 ```bash
-curl.exe http://localhost:8000/livez
+
 curl.exe http://localhost:8000/healthz
 ```
 

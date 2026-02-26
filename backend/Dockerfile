@@ -27,9 +27,9 @@ RUN pip install --upgrade pip \
 
 COPY backend/ ./
 
-EXPOSE 8000
+EXPOSE 10000
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
- CMD curl -f http://localhost:8000/healthz || exit 1
+ CMD curl -f http://localhost:10000/healthz || exit 1
 
-CMD ["sh", "-c", "uvicorn main:app --host ${UVICORN_HOST:-0.0.0.0} --port ${UVICORN_PORT:-8000} --log-level ${LOG_LEVEL:-info}"]
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]

@@ -1,43 +1,47 @@
 # GreenHealth AI
 
-GreenHealth AI is a real-time healthcare sustainability platform built with FastAPI, Pathway, and React.
-It streams departmental telemetry, computes live sustainability insights, raises alerts, and serves an AI copilot with Pathway RAG.
+GreenHealth AI is a real-time hospital sustainability platform. It combines Pathway streaming pipelines, FastAPI APIs, and a React dashboard to monitor department telemetry, compute live sustainability metrics, trigger alerts, and provide AI copilot recommendations with RAG.
 
-## Highlights
+## Why this project
 
-- Real-time streaming pipeline powered by Pathway (`pw.io`, `windowby`, reducers, subscriptions, `pw.run()`).
-- Live dashboard with REST + WebSocket updates (`/metrics`, `/alerts`, `/sustainability-score`, `/ws/metrics`).
-- Pathway xPack LLM integration for retrieval-augmented copilot answers.
-- Containerized local runtime via Docker Compose.
-- Production deployment templates for Render (backend) and Vercel (frontend).
+- Stream-first architecture with Pathway (`pw.io.python`, `windowby`, reducers, `pw.io.subscribe`, `pw.run()`).
+- Live telemetry dashboard over REST + WebSocket.
+- Event-driven alerts for high energy / waste / paper usage.
+- Pathway xPack LLM-based RAG copilot grounded in sustainability documents.
+- Docker-first deployment with Render + Vercel support.
 
 ## Tech Stack
 
-- Backend: FastAPI, Pathway, Pathway xPack LLM, LiteLLM
-- Frontend: React, TypeScript, Vite, Recharts, Framer Motion
-- Infrastructure: Docker, Docker Compose, Render, Vercel
+- **Backend**: FastAPI, Pathway, Pathway xPack LLM, LiteLLM
+- **Frontend**: React, TypeScript, Vite, Recharts, Framer Motion
+- **Infra**: Docker, Docker Compose, Render, Vercel
 
-## Project Structure
+## Repository Layout
 
 ```text
 backend/
-  main.py                    # FastAPI app + health endpoints + websocket
-  app/api/                   # Route + schema layer
-  app/services/              # Business services
-  ingestion/                 # Pathway connectors + stream runner + RAG server
-  transforms/                # Streaming transformations + state stores
-  agents/                    # Copilot client wrapper
+  main.py                    # FastAPI app, health probes, websocket
+  app/api/                   # API routes + schemas
+  app/services/              # API service layer
+  ingestion/                 # connectors, runner, RAG server
+  transforms/                # streaming graph + state stores
+  agents/                    # copilot client
 frontend/
-  src/pages/                 # Landing and dashboard pages
-  src/components/            # UI components
-  vercel.json                # SPA rewrite config
-docker-compose.yml
+  src/pages/                 # landing and dashboard pages
+  src/components/            # dashboard + copilot components
+docs/
+  ARCHITECTURE.md
+  API.md
+  DEPLOYMENT.md
+  RUNBOOK.md
+  HACKATHON_CHECKLIST.md
 render.yaml
+docker-compose.yml
 ```
 
 ## Quick Start (Docker)
 
-From repo root:
+From repository root:
 
 ```bash
 docker compose up --build -d
@@ -45,21 +49,21 @@ docker compose ps
 curl.exe http://localhost:8000/healthz
 ```
 
-App URLs:
+Default URLs:
 
 - Frontend: `http://localhost`
-- Backend OpenAPI: `http://localhost:8000/docs`
+- Backend docs: `http://localhost:8000/docs`
 - Health: `http://localhost:8000/healthz`
 
 ## Configuration
 
-1) Copy env template:
+Copy environment template:
 
 ```bash
 copy .env.example .env
 ```
 
-2) Set at minimum:
+Minimum required variables:
 
 - `GROQ_API_KEY`
 - `GROQ_MODEL`
@@ -72,9 +76,9 @@ copy .env.example .env
 - `GREENHEALTH_RAG_PORT`
 - `GREENHEALTH_RAG_URL`
 
-`GREENHEALTH_REQUIRE_RAG=true` forces copilot to fail closed if RAG is unavailable.
+`GREENHEALTH_REQUIRE_RAG=true` enforces fail-closed copilot behavior when RAG is unavailable.
 
-## Local Development (Without Docker)
+## Local Development
 
 Backend:
 
@@ -94,20 +98,35 @@ npm install
 npm run dev
 ```
 
-## Production Deployment
+Frontend production build check:
 
-- Backend on Render: use `render.yaml`
-- Frontend on Vercel: root directory `frontend` and `VITE_API_BASE_URL` set to Render URL
+```bash
+cd frontend
+npm run build
+```
 
-Detailed guides:
+## Deployment
 
-- `docs/ARCHITECTURE.md`
-- `docs/API.md`
-- `docs/DEPLOYMENT.md`
-- `docs/RUNBOOK.md`
+- Render backend configuration: `docs/DEPLOYMENT.md`
+- Vercel frontend configuration: `docs/DEPLOYMENT.md`
 
-## Security Notes
+## Documentation Index
 
-- Never commit real API keys.
-- `.env` files are ignored by git.
-- Rotate keys immediately if exposed in logs/screenshots/chats.
+- Architecture: `docs/ARCHITECTURE.md`
+- API reference: `docs/API.md`
+- Tech stack: `docs/TECH_STACK.md`
+- Deployment guide: `docs/DEPLOYMENT.md`
+- Operations runbook: `docs/RUNBOOK.md`
+- Hackathon requirement mapping: `docs/HACKATHON_CHECKLIST.md`
+- Contributing guide: `CONTRIBUTING.md`
+- Security policy: `SECURITY.md`
+
+## Security
+
+- Never commit secrets (`.env` files are gitignored).
+- Rotate keys immediately if exposed.
+- Store production secrets only in Render/Vercel secret managers.
+
+## License
+
+MIT License. See `LICENSE`.
