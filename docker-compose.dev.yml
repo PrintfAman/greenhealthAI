@@ -1,0 +1,19 @@
+services:
+  api:
+    environment:
+      LOG_LEVEL: "debug"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    command: >
+      sh -c "pip install -r requirements.txt && uvicorn main:app 
+      --host 0.0.0.0 --port 8000 --reload --log-level debug"
+
+  web:
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    command: npm run dev

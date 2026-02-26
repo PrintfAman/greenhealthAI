@@ -1,0 +1,29 @@
+GreenHealth Reference Guidelines
+
+ICU medical waste reduction:
+- Segregate waste at point of care: infectious, sharps, pharmaceutical, recyclable.
+- Use color-coded bins with clear labels and daily compliance checks.
+- Shift from single-use kits to procedure-specific kits to reduce over-opening.
+- Introduce reusable gowns, drapes, and sterilizable instrument trays where clinically safe.
+- Track waste per occupied ICU bed and review weekly with nursing leadership.
+
+Energy efficiency in critical care:
+- Set ICU HVAC and lighting schedules around occupancy and clinical constraints.
+- Replace legacy monitors and pumps with energy-efficient models during refresh cycles.
+- Enable automatic sleep mode for non-clinical workstations and display panels.
+- Audit compressed air and oxygen leak losses quarterly.
+
+Paper and digital workflow:
+- Default printers to duplex and black-and-white.
+- Digitize consent forms and discharge packets using EHR-integrated templates.
+- Review print logs per department and set monthly reduction targets.
+
+Governance and alerts:
+- Trigger high-severity alert when ICU waste rises above 40 kg average over 15 minutes.
+- Trigger medium-severity alert when energy exceeds 200 kWh average over 15 minutes.
+- Escalate unresolved alerts older than 30 minutes to operations manager.
+
+KPI targets:
+- Reduce ICU waste intensity by 15 percent in 90 days.
+- Reduce facility energy intensity by 10 percent in 6 months.
+- Reduce paper usage by 25 percent in 6 months.

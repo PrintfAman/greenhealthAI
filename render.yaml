@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: greenhealth-api
+    runtime: docker
+    dockerContext: .
+    dockerfilePath: ./backend/Dockerfile
+    autoDeploy: true
+    healthCheckPath: /healthz
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: UVICORN_PORT
+        value: 10000
+      - key: UVICORN_HOST
+        value: 0.0.0.0
+      - key: LOG_LEVEL
+        value: info
+      - key: GREENHEALTH_ENABLE_RAG
+        value: "true"
+      - key: GREENHEALTH_REQUIRE_RAG
+        value: "true"
+      - key: GREENHEALTH_DOCS_DIR
+        value: /app/data/documents
+      - key: GREENHEALTH_DOC_PATTERN
+        value: "*.txt"
+      - key: GREENHEALTH_RAG_HOST
+        value: 127.0.0.1
+      - key: GREENHEALTH_RAG_PORT
+        value: 8765
+      - key: GREENHEALTH_RAG_URL
+        value: http://127.0.0.1:8765
+      - key: GREENHEALTH_EMBED_MODEL
+        value: sentence-transformers/all-MiniLM-L6-v2
+      - key: GREENHEALTH_HEALTH_STARTUP_GRACE_SECONDS
+        value: 180
+      - key: GREENHEALTH_ALLOWED_ORIGINS
+        value: https://your-vercel-domain.vercel.app
+      - key: GROQ_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: GROQ_API_KEY
+        sync: false
